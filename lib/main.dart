@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -5,21 +6,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -29,16 +20,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -46,68 +27,198 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Align(
+        alignment: Alignment.topCenter,
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          children: [
+            Card(
+              color: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Top Vendas',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 8),
+                      child: MyChart(),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class MyChart extends StatelessWidget {
+  final defaultWidth = 10.0;
+
+  List<BarChartGroupData> get data {
+    return [
+      BarChartGroupData(
+        x: 1,
+        barRods: [
+          BarChartRodData(
+            y: 5,
+            colors: [Colors.purple, Colors.red],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+      BarChartGroupData(
+        x: 2,
+        barRods: [
+          BarChartRodData(
+            y: 4,
+            colors: [Colors.purple, Colors.red],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+      BarChartGroupData(
+        x: 3,
+        barRods: [
+          BarChartRodData(
+            y: 9,
+            colors: [Colors.purple],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+      BarChartGroupData(
+        x: 4,
+        barRods: [
+          BarChartRodData(
+            y: 10,
+            colors: [Colors.purple, Colors.red],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+      BarChartGroupData(
+        x: 5,
+        barRods: [
+          BarChartRodData(
+            y: 4,
+            colors: [Colors.purple, Colors.red],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+      BarChartGroupData(
+        x: 6,
+        barRods: [
+          BarChartRodData(
+            y: 9,
+            colors: [Colors.purple],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+      BarChartGroupData(
+        x: 7,
+        barRods: [
+          BarChartRodData(
+            y: 9,
+            colors: [Colors.purple, Colors.red],
+            width: defaultWidth,
+            borderRadius: BorderRadius.circular(90),
+          ),
+        ],
+      ),
+    ];
+  }
+
+  String getTiles(value) {
+    switch (value.toInt()) {
+      case 1:
+        return 'S';
+        break;
+      case 2:
+        return 'T';
+        break;
+      case 3:
+        return 'Q';
+        break;
+      case 4:
+        return 'Q';
+        break;
+      case 5:
+        return 'S';
+        break;
+      case 6:
+        return 'S';
+        break;
+      case 7:
+        return 'D';
+        break;
+      default:
+        return '~';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BarChart(
+      BarChartData(
+        borderData: FlBorderData(
+          border: Border.all(
+            color: Colors.blue,
+            style: BorderStyle.solid,
+            width: 1,
+          ),
+          show: false,
+        ),
+        barTouchData: BarTouchData(
+          touchTooltipData: BarTouchTooltipData(
+            getTooltipItem: (dataGroup, indexGroup, rad, indexRad) {
+              return BarTooltipItem(
+                'v: ${rad.y}',
+                TextStyle(
+                  color: Colors.black,
+                ),
+              );
+            },
+            tooltipBottomMargin: 10,
+            tooltipBgColor: Colors.greenAccent,
+            tooltipRoundedRadius: 30.0,
+          ),
+        ),
+        titlesData: FlTitlesData(
+          leftTitles: SideTitles(showTitles: false),
+          bottomTitles: SideTitles(
+            getTitles: getTiles,
+            getTextStyles: (value) => TextStyle(
+              color: Colors.white,
+            ),
+            showTitles: true,
+          ),
+        ),
+        barGroups: data,
+      ),
+      swapAnimationDuration: Duration(milliseconds: 1000),
     );
   }
 }
